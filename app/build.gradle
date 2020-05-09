@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "com.raka.runlover"
+        applicationId "com.bdeDevTeam.runtracker"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

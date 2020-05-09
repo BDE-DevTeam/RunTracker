@@ -1,4 +1,4 @@
-package com.raka.runtracker
+package com.bdeDevTeam.runtracker
 
 import org.junit.Test
 
