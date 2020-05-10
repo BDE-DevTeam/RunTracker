@@ -30,21 +30,39 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:text="00:00:000"
-        android:textSize="36sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/button_track"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_burnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:text="-0.00 KCAL"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button_track"
+        app:layout_constraintStart_toEndOf="@+id/text_duration"
+        app:layout_constraintEnd_toStartOf="@+id/text_distance"
+        />
 
     <TextView
         android:id="@+id/text_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="0.00 m"
-        android:textSize="36sp"
+        android:textSize="22sp"
         android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/text_burnt"
         app:layout_constraintBottom_toTopOf="@+id/button_track"
         app:layout_constraintEnd_toEndOf="parent" />
 

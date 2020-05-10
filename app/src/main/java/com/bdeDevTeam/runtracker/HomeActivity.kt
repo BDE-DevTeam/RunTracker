@@ -43,7 +43,7 @@ class HomeActivity : AppCompatActivity() {
         recycler.adapter = HistoryAdapter(mHistory, object : HistoryAdapter.OnItemClickListener{
             override fun onItemClick(data: RunData) {
                 var dataMap: HashMap<String, Any> = RunData.CreateMap(data.getDateInMillis(), data.getDurationInMillis(),
-                        data.getDistance(), data.getStartCoordinate(), data.getFinishCoordinate())
+                        data.getDistance(), data.getBurntCalories(), data.getStartCoordinate(), data.getFinishCoordinate())
 
                 var detailIntent: Intent = Intent(applicationContext, DetailActivity::class.java)
                 detailIntent.putExtra(DetailActivity.EXTRA_DATA, dataMap)
