@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".HomeActivity"
+    >
+    <item
+        android:id="@+id/settingsOpen"
+        android:icon="@drawable/ic_person_pin_24dp"
+        android:title="Settings"
+        app:showAsAction="ifRoom"
+        />
+</menu>

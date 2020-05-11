@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Run Tracker</string>
+    <string name="title_activity_home">Run Tracker</string>
+    <string name="title_activity_track">Track Run</string>
+    <string name="title_activity_detail">Run Detail</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_launch">Welcome</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="pref_previously_started">false</string>
+</resources>
