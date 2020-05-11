@@ -21,6 +21,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/text_burnt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-0000.00 KCAL"
+        android:layout_marginLeft="25dp"
+        android:layout_marginVertical="4dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/text_date"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/text_duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

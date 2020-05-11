@@ -24,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.bdeDevTeam.runtracker.R
 import kotlinx.android.synthetic.main.activity_home.*
+import org.w3c.dom.Text
 import java.net.URI
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,7 +33,7 @@ import kotlin.collections.HashMap
 class TrackActivity : AppCompatActivity() {
     private val BACKEND_URL: String by lazy {resources.getString(R.string.backend_url)}
     private val DATABASE_NAME: String by lazy {resources.getString(R.string.run_database_name)}
-
+    private var WEIGHT: Float = 60.0f
     private var mTracking: Boolean = false
 
     @SuppressLint("MissingPermission")
@@ -46,10 +47,12 @@ class TrackActivity : AppCompatActivity() {
         var buttonReset: Button = findViewById(R.id.button_reset)
         var buttonTrack: Button = findViewById(R.id.button_track)
         var textDuration: TextView = findViewById(R.id.text_duration)
+        var textBurnt: TextView = findViewById(R.id.text_burnt)
         var textDistance: TextView = findViewById(R.id.text_distance)
 
         var duration: Long = 0
-        var distance: Float = 0f;
+        var distance: Float = 0f
+        var burnt: Float = 0f
         var startTime: Long = 0
         var startCoordinate: LatLng? = null
         var finishCoordinate: LatLng? = null
@@ -74,9 +77,10 @@ class TrackActivity : AppCompatActivity() {
                     if (previousCoordinate != null) {
                         var results: FloatArray = floatArrayOf(0.0f)
                         Location.distanceBetween(previousCoordinate.latitude, previousCoordinate.longitude, finishCoordinate!!.latitude, finishCoordinate!!.longitude, results)
-
                         distance += results[0]
+                        burnt = distance/1000 * WEIGHT //KCAL
                         textDistance.text = String.format("%.2f m", distance)
+                        textBurnt.text = String.format("-%.2f KCAL", burnt)
                     }
                 }
             }
@@ -156,10 +160,11 @@ class TrackActivity : AppCompatActivity() {
             buttonTrack.text = "START"
             textDuration.text = SimpleDateFormat("mm:ss:SSS").format(Date(0))
             textDistance.text = "0.00 m"
+            textBurnt.text = "-0.00 KCAL"
         }
 
         buttonSave.setOnClickListener {
-            var data: HashMap<String, Any> = RunData.CreateMap(startTime, duration, distance, startCoordinate, finishCoordinate)
+            var data: HashMap<String, Any> = RunData.CreateMap(startTime, duration, distance, burnt, startCoordinate, finishCoordinate)
 
             var document: DocumentRevision = DocumentRevision()
             document.body = DocumentBodyFactory.create(data)
