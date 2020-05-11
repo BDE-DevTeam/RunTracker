@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.bdeDevTeam.runtracker.R
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,11 +17,13 @@ class HistoryAdapter(private var mHistory: List<RunData>, private var mListener:
     class HistoryViewHolder constructor(view: View) : RecyclerView.ViewHolder(view) {
         public var textDate: TextView
         public var textDuration: TextView
+        public var textBurnt: TextView
         public var textDistance: TextView
 
         init {
             textDate = view.findViewById(R.id.text_date)
             textDuration = view.findViewById(R.id.text_duration)
+            textBurnt = view.findViewById(R.id.text_burnt)
             textDistance = view.findViewById(R.id.text_distance)
         }
 
@@ -43,6 +44,7 @@ class HistoryAdapter(private var mHistory: List<RunData>, private var mListener:
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         holder.textDistance.text = String.format("%.2f m", mHistory[position].getDistance())
         holder.textDuration.text = SimpleDateFormat("mm:ss:SSS").format(Date(mHistory[position].getDurationInMillis()))
+        holder.textBurnt.text = String.format("-%.2f KCAL", mHistory[position].getBurntCalories())
         holder.textDate.text = SimpleDateFormat("dd/MM/yyyy").format(Date(mHistory[position].getDateInMillis()))
 
         holder.setOnClickListener(mListener, mHistory[position])

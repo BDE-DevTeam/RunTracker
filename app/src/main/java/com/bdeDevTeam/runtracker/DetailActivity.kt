@@ -11,6 +11,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.bdeDevTeam.runtracker.R
 import kotlinx.android.synthetic.main.activity_home.*
+import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,9 +36,11 @@ class DetailActivity : AppCompatActivity(), OnMapReadyCallback {
         var textDate: TextView = findViewById(R.id.text_date)
         var textDuration: TextView = findViewById(R.id.text_duration)
         var textDistance: TextView = findViewById(R.id.text_distance)
+        var textBurnt: TextView = findViewById(R.id.text_burnt)
 
         textDistance.text = String.format("Distance: %.2f m", mData.getDistance())
         textDuration.text = "Duration: $durationString"
+        textBurnt.text = String.format("-%.2f KCAL", mData.getBurntCalories())
         textDate.text = SimpleDateFormat("dd/MM/yyyy").format(Date(mData.getDateInMillis()))
 
         mapView.onCreate(savedInstanceState)

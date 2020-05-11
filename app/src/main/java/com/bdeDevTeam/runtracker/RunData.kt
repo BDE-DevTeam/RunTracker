@@ -10,16 +10,18 @@ class RunData(map: Map<String, Any>) {
         const val KEY_FINISH = "finish"
         const val KEY_DURATION = "duration"
         const val KEY_DISTANCE = "distance"
+        const val KEY_BURNT = "burnt"
         const val KEY_LATITUDE = "latitude"
         const val KEY_LONGITUDE = "longitude"
 
-        fun CreateMap(dateinMillis: Long, duration: Long, distance: Float,
+        fun CreateMap(dateinMillis: Long, duration: Long, distance: Float, burnt: Float,
                       start: LatLng?, finish: LatLng?): HashMap<String, Any> {
 
             return hashMapOf(
                     KEY_DATE to dateinMillis,
                     KEY_DURATION to duration,
                     KEY_DISTANCE to distance,
+                    KEY_BURNT to burnt,
                     KEY_START to hashMapOf(
                             KEY_LATITUDE to start!!.latitude,
                             KEY_LONGITUDE to start!!.longitude
@@ -35,6 +37,7 @@ class RunData(map: Map<String, Any>) {
     private var mDate: Long = 0
     private var mDuration: Long = 0
     private var mDistance: Float = 0f
+    private var mBurnt: Float = 0f
     private var mStart: LatLng = LatLng(0.0, 0.0)
     private var mFinish: LatLng = LatLng(0.0, 0.0)
 
@@ -61,6 +64,13 @@ class RunData(map: Map<String, Any>) {
             is Long -> mDistance = (map[KEY_DISTANCE] as Long).toFloat()
             is Double -> mDistance = (map[KEY_DISTANCE] as Double).toFloat()
             is Float -> mDistance = map[KEY_DISTANCE] as Float
+        }
+
+        when (map[KEY_BURNT]) {
+            is Int -> mBurnt = (map[KEY_BURNT] as Int).toFloat()
+            is Long -> mBurnt = (map[KEY_BURNT] as Long).toFloat()
+            is Double -> mBurnt = (map[KEY_BURNT] as Double).toFloat()
+            is Float -> mBurnt = map[KEY_BURNT] as Float
         }
 
         when (start[KEY_LATITUDE]) {
@@ -101,6 +111,10 @@ class RunData(map: Map<String, Any>) {
 
     public fun getDistance() : Float {
         return mDistance
+    }
+
+    public fun getBurntCalories() : Float {
+        return mBurnt
     }
 
     public fun getStartCoordinate() : LatLng {
